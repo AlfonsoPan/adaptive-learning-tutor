@@ -1,0 +1,4 @@
+interface:
+  display_name: "因材施教"
+  short_description: "通过结构化选择题诊断理解层次，再个性化回答或生成图文学习笔记"
+  default_prompt: "使用 $adaptive-learning-tutor 先通过结构化选择题评估我的理解，再按我的选择回答或生成含图例与示意图的学习笔记。"
