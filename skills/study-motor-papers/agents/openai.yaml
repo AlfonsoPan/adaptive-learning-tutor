@@ -1,0 +1,11 @@
+interface:
+  display_name: "电机文献精读导师"
+  short_description: "完整翻译电机文献，阅读前诊断基础薄弱点并展开关键公式"
+  default_prompt: "使用 $study-motor-papers 精读这篇电机文献：完整翻译全文，先进行一次不依赖论文结论的基础知识诊断，再针对薄弱点补充基础并完整展开关键公式，最后按当前设备生成 Obsidian Markdown 或 PDF 学习笔记。"
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
