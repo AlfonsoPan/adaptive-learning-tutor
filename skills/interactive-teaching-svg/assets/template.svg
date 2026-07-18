@@ -1,0 +1,187 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 688" width="100%" height="100%" style="display:block;width:100%;height:100%;" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="svg-title svg-desc">
+  <title id="svg-title">磁路欧姆定律（模板示例）</title>
+  <desc id="svg-desc">模板示例图：磁动势 F = NI 驱动磁通 Φ 克服磁阻 Rm，Φ = F/Rm。演示标准布局（标题/副标题/内容卡片/底部交互面板）与标准交互。可悬停、点击高亮各部件。</desc>
+  <defs>
+    <marker id="ar-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1d4ed8"/></marker>
+    <filter id="active-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#38bdf8" flood-opacity=".8"/>
+    </filter>
+  </defs>
+  <style>
+    [data-topic] { cursor: pointer; touch-action: manipulation; user-select: none; -webkit-user-select: none; transition: opacity 160ms ease, filter 160ms ease; }
+    .slider-hit-area { fill: transparent; touch-action: none; cursor: pointer; }
+    [data-topic].is-dimmed { opacity: .18 !important; }
+    [data-topic].is-active { filter: url(#active-glow); }
+    [data-topic]:focus-visible { filter: url(#active-glow); outline: none; }
+    .flow-once { stroke-dasharray: 13 10 !important; animation: flow-once 1.15s linear 1; }
+    @keyframes flow-once { from { stroke-dashoffset: 46; } to { stroke-dashoffset: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      [data-topic] { transition: none; }
+      .flow-once { animation: none; }
+    }
+    text { font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC',sans-serif; }
+  </style>
+
+  <rect x="0" y="0" width="1200" height="688" fill="#ffffff"/>
+
+  <!-- ===== 标题（大标题 27px/600/#0f172a@(44,52)，副标题 14px/#64748b@(44,78)） ===== -->
+  <text x="44" y="52" fill="#0f172a" font-size="27" font-weight="600">磁路欧姆定律：磁动势驱动磁通克服磁阻</text>
+  <text x="44" y="78" fill="#64748b" font-size="14">模板示例 · 演示标准布局：大标题 / 副标题（§小节 · 图号）/ 内容卡片 / 底部交互面板</text>
+
+  <!-- ===== 内容卡片（rx=12 fill=#f8fafc stroke=#cbd5e1） ===== -->
+  <g>
+    <rect x="40" y="96" width="1120" height="484" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="64" y="124" fill="#0f172a" font-size="16" font-weight="600">磁路欧姆定律：Φ = F / R<tspan dy="2" font-size="11">m</tspan></text>
+
+    <!-- 磁动势源（橙：电学量/源） -->
+    <g data-topic="mmf" tabindex="0" role="button" aria-label="磁动势源 F = NI">
+      <circle cx="200" cy="338" r="25" fill="#ffedd5" stroke="#ea580c" stroke-width="2.5"/>
+      <text x="200" y="344" text-anchor="middle" fill="#c2410c" font-size="14" font-weight="600">NI</text>
+      <text x="200" y="392" text-anchor="middle" fill="#334155" font-size="12.5">磁动势 F = NI</text>
+    </g>
+
+    <!-- 磁通箭头（蓝：磁通/信号流） -->
+    <g data-topic="flux" tabindex="0" role="button" aria-label="磁通 Φ：沿磁路流动">
+      <path d="M240 338 L470 338" fill="none" stroke="#1d4ed8" stroke-width="3" stroke-linecap="round" marker-end="url(#ar-blue)"/>
+      <text x="355" y="322" text-anchor="middle" fill="#1d4ed8" font-size="15" font-weight="600" font-style="italic">Φ</text>
+    </g>
+
+    <!-- 磁阻（石板灰：结构/中性件） -->
+    <g data-topic="reluctance" tabindex="0" role="button" aria-label="磁阻 Rm = l/(μA)">
+      <rect x="480" y="318" width="160" height="40" rx="8" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5"/>
+      <text x="560" y="343" text-anchor="middle" fill="#334155" font-size="13" font-weight="600">R<tspan dy="2" font-size="10">m</tspan></text>
+      <text x="560" y="392" text-anchor="middle" fill="#334155" font-size="12.5">磁阻 R<tspan dy="2" font-size="9.5">m</tspan><tspan dy="-2"> = l/(μA)</tspan></text>
+    </g>
+
+    <path d="M648 338 L700 338" fill="none" stroke="#1d4ed8" stroke-width="3" stroke-linecap="round" marker-end="url(#ar-blue)"/>
+
+    <!-- 结论框（琥珀：结论/关键量） -->
+    <g data-topic="result" tabindex="0" role="button" aria-label="结论：Φ = F / Rm">
+      <rect x="710" y="310" width="250" height="56" rx="10" fill="#fffbeb" stroke="#d97706" stroke-width="1.2"/>
+      <text x="835" y="333" text-anchor="middle" fill="#92400e" font-size="14" font-weight="600">Φ = F / R<tspan dy="2" font-size="10">m</tspan></text>
+      <text x="835" y="353" text-anchor="middle" fill="#92400e" font-size="12">磁动势 ÷ 磁阻 = 磁通</text>
+    </g>
+  </g>
+
+  <!-- ===== 底部交互面板（照抄；596 + 76 + 16 = 688） ===== -->
+  <g id="interaction-panel">
+    <rect x="40" y="596" width="1120" height="76" rx="14" fill="#f8fafc" stroke="#dbe4ee" stroke-width="1.5"/>
+    <circle cx="64" cy="622" r="6" fill="#1971c2"/>
+    <text id="interaction-title" x="80" y="628" fill="#0f172a" font-size="17" font-weight="500">交互提示</text>
+    <text id="interaction-detail" x="64" y="648" fill="#475569" font-size="14">悬停预览，轻点锁定；拖动后松开不触发；按 Esc 或轻点空白取消。</text>
+  </g>
+
+  <script><![CDATA[
+  (() => {
+    const root = document.documentElement;
+    const topics = {
+      "mmf":        { "label": "磁动势 F = NI", "detail": "线圈电流与匝数的乘积是驱动磁通的源，对应电路中的电动势。", "animate": false },
+      "flux":       { "label": "磁通 Φ", "detail": "磁通沿磁路闭合流动，大小由磁动势与磁路磁阻共同决定。", "animate": true },
+      "reluctance": { "label": "磁阻 Rm = l/(μA)", "detail": "磁路越长、截面积越小、磁导率越低，磁阻越大；气隙往往主导总磁阻。", "animate": false },
+      "result":     { "label": "磁路欧姆定律", "detail": "Φ = F / Rm：与电路欧姆定律 I = U / R 一一对应，是估算磁通的出发点。", "animate": false }
+    };
+    const topicNodes = [...root.querySelectorAll('[data-topic]')];
+    const titleNode = root.getElementById('interaction-title');
+    const detailNode = root.getElementById('interaction-detail');
+    const DRAG_THRESHOLD = 8;
+    let pinnedTopic = null;
+    let pointerGesture = null;
+
+    function renderTopic(key, animate = false) {
+      const topic = topics[key];
+      topicNodes.forEach((node) => {
+        const active = node.dataset.topic === key;
+        node.classList.toggle('is-active', Boolean(key) && active);
+        node.classList.toggle('is-dimmed', Boolean(key) && !active);
+      });
+      if (!topic) {
+        titleNode.textContent = '交互提示';
+        detailNode.textContent = '悬停预览，轻点锁定；拖动后松开不触发；按 Esc 或轻点空白取消。';
+        return;
+      }
+      titleNode.textContent = topic.label;
+      detailNode.textContent = topic.detail;
+      if (animate && topic.animate) {
+        topicNodes
+          .filter((node) => node.dataset.topic === key)
+          .forEach((node) => {
+            node.classList.remove('flow-once');
+            void node.getBoundingClientRect();
+            node.classList.add('flow-once');
+            window.setTimeout(() => node.classList.remove('flow-once'), 1250);
+          });
+      }
+    }
+
+    function togglePinnedTopic(key) {
+      pinnedTopic = pinnedTopic === key ? null : key;
+      renderTopic(pinnedTopic, true);
+    }
+
+    function beginPointerGesture(event, node) {
+      if (event.pointerType === 'mouse' && event.button !== 0) return;
+      pointerGesture = {
+        pointerId: event.pointerId,
+        node,
+        startX: event.clientX,
+        startY: event.clientY,
+        moved: false
+      };
+      node.setPointerCapture(event.pointerId);
+    }
+
+    function movePointerGesture(event) {
+      if (!pointerGesture || pointerGesture.pointerId !== event.pointerId) return;
+      const dx = event.clientX - pointerGesture.startX;
+      const dy = event.clientY - pointerGesture.startY;
+      if (Math.hypot(dx, dy) > DRAG_THRESHOLD) pointerGesture.moved = true;
+    }
+
+    function finishPointerGesture(event, cancelled = false) {
+      if (!pointerGesture || pointerGesture.pointerId !== event.pointerId) return;
+      const gesture = pointerGesture;
+      pointerGesture = null;
+      if (gesture.node.hasPointerCapture(event.pointerId)) {
+        gesture.node.releasePointerCapture(event.pointerId);
+      }
+      if (!cancelled && !gesture.moved) togglePinnedTopic(gesture.node.dataset.topic);
+    }
+
+    topicNodes.forEach((node) => {
+      node.addEventListener('pointerenter', (event) => {
+        if (event.pointerType === 'mouse' && !pinnedTopic) renderTopic(node.dataset.topic);
+      });
+      node.addEventListener('pointerleave', (event) => {
+        if (event.pointerType === 'mouse' && !pinnedTopic) renderTopic(null);
+      });
+      node.addEventListener('pointerdown', (event) => {
+        event.stopPropagation();
+        beginPointerGesture(event, node);
+      });
+      node.addEventListener('pointermove', movePointerGesture);
+      node.addEventListener('pointerup', (event) => {
+        event.stopPropagation();
+        finishPointerGesture(event);
+      });
+      node.addEventListener('pointercancel', (event) => finishPointerGesture(event, true));
+      node.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          togglePinnedTopic(node.dataset.topic);
+        }
+      });
+    });
+    root.addEventListener('pointerup', (event) => {
+      const target = event.target;
+      if (!(target instanceof Element) || !target.closest('[data-topic]')) {
+        pinnedTopic = null;
+        renderTopic(null);
+      }
+    });
+    root.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') { pinnedTopic = null; renderTopic(null); }
+    });
+    renderTopic(null);
+  })();
+  ]]></script>
+</svg>
