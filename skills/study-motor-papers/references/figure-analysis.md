@@ -7,7 +7,8 @@
 3. Plot-specific checks
 4. Block diagrams and schematics
 5. Motor-control interpretation checks
-6. Common failure modes
+6. Supplemental teaching SVGs
+7. Common failure modes
 
 ## 1. Evidence order
 
@@ -109,7 +110,16 @@ Check especially for:
 - whether low-speed claims are supported by signal-to-noise ratio and load conditions;
 - whether a controller and an observer are tested together, making attribution ambiguous.
 
-## 6. Common failure modes
+## 6. Supplemental teaching SVGs
+
+- Preserve and interpret the actual source figure first. A supplementary teaching SVG may clarify mechanism, geometry, signal flow, or formula relationships, but it must never replace the source image or serve as evidence for a curve or result.
+- Before drawing, read [interactive-teaching-svg.md](interactive-teaching-svg.md) completely and use [../assets/interactive-teaching-svg-template.svg](../assets/interactive-teaching-svg-template.svg) as the mandatory skeleton.
+- Label the asset and its note block as `Fig X 补充教学图` or `概念补充图`, state the source paragraph/formula/figure it explains, and separate visible source facts from reconstructed or inferred structure.
+- Preserve real motor topology, coordinate frames, signal direction, polarity, and panel relationships. Apply the embedded SVG specification to layout, palette, interaction, accessibility, static-first readability, and validation.
+- Use a reproducible plotting library for precise traces, experimental curves, parameter sweeps, and frequency responses. Do not redraw measured or simulated data by eye in the teaching template.
+- In Obsidian, prohibit `![[xxx.svg]]` and SVG Viewer blocks. Preserve the standalone 1200×688 SVG as a source link, but display a byte-identical UTF-8 Base64 snapshot through a DataviewJS-created `data:image/svg+xml;base64,` iframe with `aspect-ratio:1200 / 688`. Do not read the attachment or use `adapter.read()`, `adapter.readBinary()`, `getResourcePath()`, `fetch()`, object URLs, Blob, `srcdoc`, or `contentDocument`; do not add `sandbox`. Regenerate and verify the Base64 after every source edit. Then actually load, click, and drag once in both Obsidian desktop and mobile, confirming the mobile view does not depend on attachment download and all geometry, values, arrows, curves, and controls stay synchronized. In PDF, embed a checked static rendering that matches the JavaScript-initialized state.
+
+## 7. Common failure modes
 
 Never:
 

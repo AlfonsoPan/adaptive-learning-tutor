@@ -62,6 +62,7 @@ Create a notation table when the paper uses many variables:
 ## 4. Figures and tables
 
 - Retain the original image at readable resolution and preserve its figure number and panel lettering.
+- Never replace an original figure with a reconstructed teaching SVG. If a supplemental explanation diagram is useful, keep it separately labeled and follow [interactive-teaching-svg.md](interactive-teaching-svg.md).
 - Translate the official caption faithfully. Keep it separate from the added interpretation.
 - For text embedded in the original image, add a compact bilingual label table below the caption. Do not erase traces, axes, or annotations by drawing over them.
 - Verify axis quantity, unit, scale type, sign direction, legend, color, line style, markers, annotations, operating point, and sampling window.

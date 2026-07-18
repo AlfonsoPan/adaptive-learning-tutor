@@ -114,6 +114,7 @@ Teach a missing concept fully at its first relevant paragraph. At later paragrap
 - unpack difficult sentences and notation;
 - show how the logic follows and which assumptions it needs;
 - connect it to earlier equations, figures, or control blocks;
+- when a new diagram materially clarifies the paragraph, formula mechanism, spatial relationship, or signal path, create a supplementary SVG by following [interactive-teaching-svg.md](interactive-teaching-svg.md) and link it to this paragraph ID;
 - state the practical implementation meaning when justified;
 - identify contradictions or alternative explanations.
 

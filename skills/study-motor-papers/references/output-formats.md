@@ -35,7 +35,10 @@ Keep the intellectual content equivalent across desktop and mobile. Include:
 9. main conclusions, possible counterexamples, and limitations;
 10. mapping to motor-control code or implementation where justified;
 11. reproducible experiments;
-12. terminology, notation, and citations.
+12. terminology, notation, and citations;
+13. supplementary interactive teaching SVGs where they materially improve understanding.
+
+For every newly created instructional diagram, follow [interactive-teaching-svg.md](interactive-teaching-svg.md) and use [../assets/interactive-teaching-svg-template.svg](../assets/interactive-teaching-svg-template.svg). Preserve source figures unchanged. Use reproducible plotting tools instead of the teaching template for precise data visualizations.
 
 Use the evidence ladder consistently:
 
@@ -61,19 +64,42 @@ paper-slug/
 ├── concepts/
 │   └── missing-concept.md
 └── assets/
-    └── fig-01.png
+    ├── fig-01.png
+    └── concept-observer-flow.svg
 ```
 
 Create companion concept notes only for substantial gaps diagnosed by the assessment or for reusable concepts central to the paper. Keep incidental explanations inside the main paper note.
 
-Use relative Obsidian embeds and wiki links:
+Use relative Obsidian embeds for raster source figures and wiki links for navigation. Preserve each interactive teaching SVG as a standalone 1200×688 source file and add a normal source link such as `[[assets/concept-observer-flow.svg|↗ 单独打开 SVG]]`; do not embed it with `![[xxx.svg]]` or an SVG Viewer block. The note itself must display a UTF-8 Base64 snapshot through a DataviewJS-created data-URI iframe, so mobile rendering does not depend on the attachment being downloaded.
 
-```markdown
-![[assets/fig-01.png]]
-详见：[[concepts/反电势与电压模型]]
+Use this DataviewJS block, replacing `svgBase64` with the complete unwrapped Base64 encoding of the standalone SVG:
+
+```dataviewjs
+const svgTitle = "07_磁场夹角与转矩";
+const svgBase64 = "这里放完整的Base64内容";
+
+const wrapper = dv.container.createDiv();
+wrapper.style.cssText =
+  "width:100%;aspect-ratio:1200 / 688;";
+
+const iframe = wrapper.createEl("iframe", {
+  attr: {
+    title: svgTitle,
+    loading: "eager"
+  }
+});
+
+iframe.style.cssText =
+  "display:block;" +
+  "width:100%;" +
+  "height:100%;" +
+  "border:0;" +
+  "background:transparent;";
+
+iframe.src = "data:image/svg+xml;base64," + svgBase64;
 ```
 
-Do not require third-party Obsidian plugins or custom CSS.
+Do not use `adapter.read()`, `adapter.readBinary()`, `getResourcePath()`, `fetch()`, `URL.createObjectURL()`, `Blob`, `iframe.srcdoc`, or `iframe.contentDocument` in the embed. Do not add `sandbox`; run only reviewed and trusted SVG JavaScript. The standalone source and decoded Base64 snapshot must be byte-identical. After every SVG edit, normalize the root to `viewBox="0 0 1200 688"` with responsive dimensions, regenerate the UTF-8 Base64, replace `svgBase64`, and verify equality by direct byte comparison or SHA-256.
 
 ### YAML frontmatter
 
@@ -123,7 +149,7 @@ Use this order:
 ## 引用
 ```
 
-- Add a compact Mermaid diagram under `学习地图` or `方法结构` only when dependency order, signal flow, or state transitions materially benefit from it.
+- Add a supplementary single-file interactive teaching SVG under `学习地图`, `方法结构`, `关键公式`, or the first affected paragraph only when it materially improves understanding. Do not use Mermaid or Excalidraw as the final illustration unless the user explicitly requests that format.
 - Use Obsidian-compatible KaTeX display blocks for equations: `$$ ... $$`.
 - Use Markdown tables for notation, parameter comparisons, assessment results, and evidence levels.
 - Use callouts sparingly for warnings, engineering implications, and unresolved claims.
@@ -173,6 +199,7 @@ Create `论文标题_精读学习笔记.pdf` after the assessment. Use the same 
 
 - use a single-column portrait layout;
 - embed Chinese fonts and all figures;
+- render every interactive teaching SVG to a checked static first frame for embedding; preserve the same labels and visual conclusion, and do not depend on JavaScript inside the PDF;
 - include a clickable table of contents and PDF bookmarks;
 - use clear heading hierarchy, page numbers, and paragraph IDs;
 - keep body text readable without mandatory horizontal panning;
@@ -192,9 +219,14 @@ Render every PDF page to images and inspect the result. Fix clipped formulas, mi
 ### Desktop checks
 
 - Verify YAML frontmatter parses cleanly.
-- Verify all Obsidian embeds use relative paths and every target asset exists.
+- Verify raster Obsidian embeds use relative paths and every target asset exists.
+- Verify every teaching SVG keeps a standalone source link but is displayed from an inline UTF-8 Base64 snapshot through DataviewJS. Verify the wrapper is `aspect-ratio:1200 / 688`, the iframe has no fixed pixel height or `sandbox`, and its style includes `display:block;width:100%;height:100%;border:0;background:transparent;`.
+- Verify the iframe `src` is exactly `data:image/svg+xml;base64,` plus `svgBase64`. Verify the embed does not use `adapter.read()`, `adapter.readBinary()`, `getResourcePath()`, `fetch()`, `URL.createObjectURL()`, `Blob`, `srcdoc`, or `contentDocument`, and no SVG uses `![[xxx.svg]]` or an SVG Viewer code block.
 - Verify wiki links resolve within the delivered folder.
-- Verify Mermaid fences, KaTeX blocks, Markdown tables, and HTML folds are balanced.
+- Verify every teaching SVG parses as XML, uses `viewBox="0 0 1200 688"`, responsive root dimensions and system fonts, has matching `data-topic` and topics keys, and is fully self-contained with no external resources, `fetch()`, absolute paths, or parent-page access. Prefer native SVG controls over `foreignObject` or HTML `<input>`. Compare the no-script first frame with the JavaScript-initialized state.
+- Verify every slider/drag hit area is at least 36–44 px high, uses `touch-action: none`, supports track clicks, and shares `pointerdown` / `pointermove` / `pointerup` / `pointercancel` plus direct pointer capture/release across mouse and touch.
+- Decode `svgBase64` and verify it is byte-identical to the standalone SVG. In Obsidian desktop, actually load, click, and drag once; repeat in Obsidian mobile and confirm it works without downloading the attachment. Verify page scrolling and slider dragging do not materially conflict, and confirm the displayed number changes after an actual drag. Never claim dual-platform verification if either device was not tested.
+- Verify KaTeX blocks, Markdown tables, and HTML folds are balanced.
 - Keep filenames filesystem-safe and stable.
 
 ### Mobile checks
